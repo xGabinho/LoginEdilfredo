@@ -6,6 +6,7 @@
     <title>Registro</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
 </head>
 <body>
     <div class="container">
@@ -26,9 +27,7 @@
     </div>
 
     <script>
-        const SUPABASE_URL = 'https://smpinwhinltoozbvymvu.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_K1kfid4VYAMB8V8irrYs5w_GAuwdpt0'; // Reemplaza con tu llave pública (anon)
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        // La instancia de 'supabase' viene de config.js
 
         const registerForm = document.getElementById('register-form');
         const messageDiv = document.getElementById('message');
