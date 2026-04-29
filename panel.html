@@ -9,50 +9,37 @@
 </head>
 <body>
     <div class="container">
-        <h2>Bienvenido al Panel</h2>
-        <div id="user-info" style="margin: 20px 0;">
-            <p>Has iniciado sesión con el correo:</p>
-            <strong id="user-email">Cargando...</strong>
+        <h2>Panel de Control</h2>
+        <div id="user-info">
+            <p>Usuario activo:</p>
+            <strong id="user-email">Verificando sesión...</strong>
         </div>
-        
-        <p>Este es tu contenido privado alojado en Supabase.</p>
-        
-        <button id="btn-logout" style="background-color: #dc3545;">Cerrar Sesión</button>
+        <p>Has accedido correctamente a la zona privada.</p>
+        <button id="btn-logout" style="background-color: #dc3545; margin-top: 1rem;">Cerrar Sesión</button>
     </div>
 
     <script>
-        // PEGA AQUÍ TU URL Y TU KEY DE SUPABASE
-        const SUPABASE_URL = 'https://TU_PROYECTO.supabase.co';
-        const SUPABASE_KEY = 'TU_ANON_KEY_PUBLICA';
+        const SUPABASE_URL = 'https://smpinwhinltoozbvymvu.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_K1kfid4VYAMB8V8irrYs5w_GAuwdpt0'; // Reemplaza con tu llave pública (anon)
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const userEmailSpan = document.getElementById('user-email');
         const btnLogout = document.getElementById('btn-logout');
 
-        // FUNCIÓN PARA VERIFICAR SI EL USUARIO ESTÁ LOGUEADO
         async function checkUser() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-
-            if (error || !session) {
-                // Si no hay sesión, lo mandamos de vuelta al login
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) {
                 window.location.href = "index.html";
             } else {
-                // Si hay sesión, mostramos su correo
                 userEmailSpan.textContent = session.user.email;
             }
         }
 
-        // FUNCIÓN PARA CERRAR SESIÓN
         btnLogout.addEventListener('click', async () => {
-            const { error } = await supabase.auth.signOut();
-            if (error) {
-                alert("Error al cerrar sesión: " + error.message);
-            } else {
-                window.location.href = "index.html";
-            }
+            await supabase.auth.signOut();
+            window.location.href = "index.html";
         });
 
-        // Ejecutar la verificación al cargar la página
         checkUser();
     </script>
 </body>
