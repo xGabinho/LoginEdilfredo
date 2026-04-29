@@ -32,8 +32,8 @@
 
     <script>
         // PEGA AQUÍ TU URL Y TU KEY DE SUPABASE
-        const SUPABASE_URL = 'https://TU_PROYECTO.supabase.co';
-        const SUPABASE_KEY = 'TU_ANON_KEY_PUBLICA';
+        const SUPABASE_URL = 'https://smpinwhinltoozbvymvu.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_K1kfid4VYAMB8V8irrYs5w_GAuwdpt0';
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const loginForm = document.getElementById('login-form');
@@ -58,10 +58,14 @@
                 messageDiv.textContent = 'Error: ' + error.message;
                 messageDiv.className = 'error';
             } else {
-                messageDiv.textContent = '¡Inicio de sesión exitoso!';
+                messageDiv.textContent = '¡Inicio de sesión exitoso! Redirigiendo...';
                 messageDiv.className = 'success';
-                // Aquí podrías redirigir a un panel: window.location.href = "panel.html";
-                console.log("Usuario logueado:", data.user);
+                
+                // ESTA LÍNEA ES LA IMPORTANTE:
+                setTimeout(() => {
+                    window.location.href = "panel.html";
+                }, 1000); // Espera 1 segundo para que el usuario vea el mensaje y luego redirige
+            }
             }
             
             btnLogin.disabled = false;

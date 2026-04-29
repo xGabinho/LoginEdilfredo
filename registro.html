@@ -60,6 +60,8 @@
             } else {
                 messageDiv.textContent = '¡Registro exitoso! Ya puedes ir a Iniciar Sesión.';
                 messageDiv.className = 'success';
+                console.log("Usuario logueado:", data.user);
+                window.location.href = "index.html";
                 registerForm.reset();
             }
             
