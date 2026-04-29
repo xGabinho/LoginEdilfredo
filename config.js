@@ -4,4 +4,4 @@ const SUPABASE_URL = 'https://smpinwhinltoozbvymvu.supabase.co';
 // La de Supabase es un JWT muy largo que empieza por 'eyJ...'
 const SUPABASE_KEY = 'sb_publishable_K1kfid4VYAMB8V8irrYs5w_GAuwdpt0'; 
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);

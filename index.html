@@ -41,7 +41,7 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
             if (error) {
                 messageDiv.textContent = error.message;
@@ -57,7 +57,7 @@
 
         // Verificar si ya está logueado para saltar el login
         async function checkSession() {
-            const { data: { session } } = await supabase.auth.getSession();
+            const { data: { session } } = await supabaseClient.auth.getSession();
             if (session) window.location.href = "panel.html";
         }
         checkSession();
